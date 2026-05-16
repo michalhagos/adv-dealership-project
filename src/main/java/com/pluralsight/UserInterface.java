@@ -325,12 +325,31 @@ public class UserInterface {
             System.out.printf("Total Price: $%.2f%n", newLeaseContract.getTotalPrice());
             System.out.printf("Monthly Payment: $%.2f%n", newLeaseContract.getMonthlyPayment());
         }
+// save the contract to the contracts file if one was created
+        if (newContract != null) {
+            // create the contract file manager to save the contract
+            ContractFileManager contractFileManager = new ContractFileManager();
+            contractFileManager.saveContract(newContract);
+
+            // remove the vehicle from the dealership inventory
+            // a sold or leased vehicle is no longer available for other customers
+            dealership.removeVehicle(selectedVehicle);
+
+            // save the updated inventory back to the CSV file
+            DealershipFileManager dealershipFileManager = new DealershipFileManager();
+            dealershipFileManager.saveDealership(dealership);
+
+            System.out.println("\nContract saved successfully!");
+            System.out.println("Vehicle has been removed from inventory.");
+        } else {
+            // the user typed something other than sale or lease
+            System.out.println("Invalid option. Please enter sale or lease.");
+        }
 
 
 
 
     }
-
 
 
     // the display method starts the application and runs the menu loop
