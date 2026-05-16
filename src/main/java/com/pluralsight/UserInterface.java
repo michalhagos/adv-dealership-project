@@ -217,11 +217,29 @@ public class UserInterface {
     // this method handles the full sell or lease process
 // asks the user for all required information
 // creates the correct contract and saves it to the contracts.csv file
+
     public void processSellOrLeaseRequest() {
         Scanner scanner = new Scanner(System.in);
 
+// ask the user for the VIN of the vehicle they want to buy or lease
+        System.out.print("Enter the VIN of the vehicle: ");
+        int vinNumber = Integer.parseInt(scanner.nextLine());
 
+        // search through the inventory to find the vehicle with that VIN
+        Vehicle selectedVehicle = null;
+        for (Vehicle currentVehicle : dealership.getAllVehicles()) {
+            if (currentVehicle.getVin() == vinNumber) {
+                // found the vehicle so store it
+                selectedVehicle = currentVehicle;
+                break;
+            }
+        }
 
+        // if no vehicle was found with that VIN tell the user and stop
+        if (selectedVehicle == null) {
+            System.out.println("No vehicle found with that VIN.");
+            return;
+        }
 
 
 
