@@ -42,6 +42,17 @@ public class LeaseContract extends Contract {
     }
 
 
+    // calculates the total price of the lease
+// total = vehicle price - expected ending value + lease fee
+    @Override
+    public double getTotalPrice() {
+        return getVehicleSold().getPrice() - expectedEndingValue + leaseFee;
+
+    }
+
+
+
+
 
 
 
