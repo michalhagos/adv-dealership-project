@@ -241,9 +241,21 @@ public class UserInterface {
             return;
         }
 
+// ask the user for the customer information
+        System.out.print("Enter customer name: ");
+        String customerName = scanner.nextLine();
+
+        System.out.print("Enter customer email: ");
+        String customerEmail = scanner.nextLine();
+
+// get today's date as a string for the contract and date format is YYYYMMDD
+        String contractDate = java.time.LocalDate.now().toString().replace("-", "");
+
 
 
     }
+
+
 
     // the display method starts the application and runs the menu loop
 // called from Program main method to kick everything off
