@@ -15,10 +15,41 @@ public class ContractFileManager {
             // open the file for writing and true means we append to the file instead of overwriting it
             BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true));
 
+            // get the vehicle from the contract so we can access its details
+            Vehicle soldVehicle = contract.getVehicleSold();
+
+// build the vehicle portion of the Contracts.csv line
+
+            String vehicleInfo = soldVehicle.getVin() + "|" +
+                    soldVehicle.getYear() + "|" +
+                    soldVehicle.getMake() + "|" +
+                    soldVehicle.getModel() + "|" +
+                    soldVehicle.getVehicleType() + "|" +
+                    soldVehicle.getColor() + "|" +
+                    soldVehicle.getOdometer() + "|" +
+                    soldVehicle.getPrice();
+
+
+
+
+
+
+
+
+
+
+
         } catch (Exception e) {
             System.out.println("Error saving contract: " + e.getMessage());
         }
     }
+
+
+
+
+
+
+
 
 
 }
