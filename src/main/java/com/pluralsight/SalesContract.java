@@ -76,6 +76,17 @@ public class SalesContract extends Contract  {
         this.isFinanced = isFinanced;
     }
 
+    // calculates the total price of the sale
+// total = vehicle price + sales tax + recording fee + processing fee
+    @Override
+    public double getTotalPrice() {
+        return getVehicleSold().getPrice() +
+                salesTaxAmount +
+                recordingFee +
+                processingFee;
+    }
+
+
 
 
 
