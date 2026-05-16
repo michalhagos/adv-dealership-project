@@ -19,7 +19,7 @@ public class ContractFileManager {
             Vehicle soldVehicle = contract.getVehicleSold();
 
 // build the vehicle portion of the Contracts.csv line
-
+// this part will be the same for sale and lease contracts
             String vehicleInfo = soldVehicle.getVin() + "|" +
                     soldVehicle.getYear() + "|" +
                     soldVehicle.getMake() + "|" +
@@ -29,8 +29,10 @@ public class ContractFileManager {
                     soldVehicle.getOdometer() + "|" +
                     soldVehicle.getPrice();
 
-
-
+// build the contract portion of the contract.csv line. this part is the same for both sale and lease contracts
+            String contractInfo = contract.getDate() + "|" +
+                    contract.getCustomerName() + "|" +
+                    contract.getCustomerEmail() + "|";
 
 
 
@@ -43,8 +45,6 @@ public class ContractFileManager {
             System.out.println("Error saving contract: " + e.getMessage());
         }
     }
-
-
 
 
 
