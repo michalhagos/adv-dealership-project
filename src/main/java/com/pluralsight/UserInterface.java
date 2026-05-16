@@ -253,6 +253,48 @@ public class UserInterface {
 
 
 
+        // ask the user if they want to sell or lease the vehicle
+        System.out.print("Is this a sale or a lease? (sale/lease): ");
+        String contractType = scanner.nextLine().trim().toLowerCase();
+
+// create a variable to hold the contract we will create
+        Contract newContract = null;
+
+        if (contractType.equals("sale")) {
+            // ask if the customer wants to finance the purchase
+            System.out.print("Does the customer want to finance? (yes/no): ");
+            String financeAnswer = scanner.nextLine().trim().toLowerCase();
+            boolean customerWantsToFinance = financeAnswer.equals("yes");
+
+            // create a new SalesContract with all the collected information
+            SalesContract newSalesContract = new SalesContract(
+                    contractDate,
+                    customerName,
+                    customerEmail,
+                    selectedVehicle,
+                    customerWantsToFinance
+            );
+
+            // store the contract in the newContract variable
+            newContract = newSalesContract;
+
+            // show the customer a summary of their sale
+            System.out.println("\n--- Sale Summary ---");
+            System.out.println("Vehicle: " + selectedVehicle.getYear() + " " +
+                    selectedVehicle.getMake() + " " +
+                    selectedVehicle.getModel());
+            System.out.printf("Vehicle Price: $%.2f%n", selectedVehicle.getPrice());
+            System.out.printf("Total Price: $%.2f%n", newSalesContract.getTotalPrice());
+            if (customerWantsToFinance) {
+                System.out.printf("Monthly Payment: $%.2f%n", newSalesContract.getMonthlyPayment());
+            } else {
+                System.out.println("No financing selected");
+            }
+        }
+
+
+
+
     }
 
 
