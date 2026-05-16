@@ -214,6 +214,18 @@ public class UserInterface {
         }
     }
 
+    // this method handles the full sell or lease process
+// asks the user for all required information
+// creates the correct contract and saves it to the contracts.csv file
+    public void processSellOrLeaseRequest() {
+        Scanner scanner = new Scanner(System.in);
+
+
+
+
+
+
+    }
 
     // the display method starts the application and runs the menu loop
 // called from Program main method to kick everything off
