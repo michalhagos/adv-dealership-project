@@ -291,6 +291,40 @@ public class UserInterface {
                 System.out.println("No financing selected");
             }
         }
+        else if (contractType.equals("lease")) {
+            // check if the vehicle is eligible for leasing
+            // you cannot lease a vehicle over 3 years old
+            int currentYear = java.time.LocalDate.now().getYear();
+            int vehicleAge = currentYear - selectedVehicle.getYear();
+
+            if (vehicleAge > 3) {
+                System.out.println("Sorry this vehicle is too old to lease.");
+                System.out.println("You can only lease vehicles that are 3 years old or newer.");
+                return;
+            }
+
+            // create a new LeaseContract with all the collected information
+            LeaseContract newLeaseContract = new LeaseContract(
+                    contractDate,
+                    customerName,
+                    customerEmail,
+                    selectedVehicle
+            );
+
+            // store the contract in the newContract variable
+            newContract = newLeaseContract;
+
+            // show the customer a summary of their lease
+            System.out.println("\n--- Lease Summary ---");
+            System.out.println("Vehicle: " + selectedVehicle.getYear() + " " +
+                    selectedVehicle.getMake() + " " +
+                    selectedVehicle.getModel());
+            System.out.printf("Vehicle Price: $%.2f%n", selectedVehicle.getPrice());
+            System.out.printf("Expected Ending Value: $%.2f%n", newLeaseContract.getExpectedEndingValue());
+            System.out.printf("Lease Fee: $%.2f%n", newLeaseContract.getLeaseFee());
+            System.out.printf("Total Price: $%.2f%n", newLeaseContract.getTotalPrice());
+            System.out.printf("Monthly Payment: $%.2f%n", newLeaseContract.getMonthlyPayment());
+        }
 
 
 
