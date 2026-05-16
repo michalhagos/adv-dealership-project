@@ -35,9 +35,40 @@ public class ContractFileManager {
                     contract.getCustomerEmail() + "|";
 
 
+            // use instanceof to check what type of contract we have
+            if (contract instanceof SalesContract) {
+                // cast the contract to SalesContract so we can access sale specific fields
+                SalesContract salesContract = (SalesContract) contract;
 
+                // write the full sale contract line to the file
+                writer.write("SALE|" +
+                        contractInfo +
+                        vehicleInfo + "|" +
+                        salesContract.getSalesTaxAmount() + "|" +
+                        salesContract.getRecordingFee() + "|" +
+                        salesContract.getProcessingFee() + "|" +
+                        salesContract.getTotalPrice() + "|" +
+                        (salesContract.isFinanced() ? "YES" : "NO") + "|" +
+                        salesContract.getMonthlyPayment());
+                writer.newLine();
 
+            } else if (contract instanceof LeaseContract) {
+                // cast the contract to LeaseContract so we can access lease specific fields
+                LeaseContract leaseContract = (LeaseContract) contract;
 
+                // write the full lease contract line to the file
+                writer.write("LEASE|" +
+                        contractInfo +
+                        vehicleInfo + "|" +
+                        leaseContract.getExpectedEndingValue() + "|" +
+                        leaseContract.getLeaseFee() + "|" +
+                        leaseContract.getTotalPrice() + "|" +
+                        leaseContract.getMonthlyPayment());
+                writer.newLine();
+            }
+
+            // close the file writer when done writing
+            writer.close();
 
 
 
@@ -45,9 +76,6 @@ public class ContractFileManager {
             System.out.println("Error saving contract: " + e.getMessage());
         }
     }
-
-
-
 
 
 
