@@ -21,6 +21,25 @@ public class LeaseContract extends Contract {
         this.leaseFee = vehicleSold.getPrice() * 0.07;
     }
 
+    // returns the expected ending value of the vehicle
+    public double getExpectedEndingValue() {
+        return expectedEndingValue;
+    }
+
+    // updates the expected ending value of the vehicle
+    public void setExpectedEndingValue(double expectedEndingValue) {
+        this.expectedEndingValue = expectedEndingValue;
+    }
+
+    // returns the lease fee
+    public double getLeaseFee() {
+        return leaseFee;
+    }
+
+    // updates the lease fee
+    public void setLeaseFee(double leaseFee) {
+        this.leaseFee = leaseFee;
+    }
 
 
 
