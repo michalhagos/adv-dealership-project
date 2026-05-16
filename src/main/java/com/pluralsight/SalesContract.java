@@ -86,7 +86,38 @@ public class SalesContract extends Contract  {
                 processingFee;
     }
 
+    // this method calculates the monthly payment if the customer chose to finance
 
+    @Override
+    public double getMonthlyPayment() {
+        // if customer chose not to finance return 0
+        if (!isFinanced) {
+            return 0.00;
+        }
+
+        // get the total price to finance
+        double totalPrice = getTotalPrice();
+
+        // set the interest rate and number of months based on price
+        double interestRate;
+        int months;
+
+        if (totalPrice >= 10000) {
+            // loans $10,000 or more are at 4.25% for 48 months
+            interestRate = 0.0425 / 12;
+            months = 48;
+        } else {
+            // loans under $10,000 are at 5.25% for 24 months
+            interestRate = 0.0525 / 12;
+            months = 24;
+        }
+
+        // calculate monthly payment using standard loan formula
+        // M = P * (r(1+r)^n) / ((1+r)^n - 1)
+        // P = principal, r = monthly rate, n = number of months
+        return totalPrice * (interestRate * Math.pow(1 + interestRate, months)) /
+                (Math.pow(1 + interestRate, months) - 1);
+    }
 
 
 
