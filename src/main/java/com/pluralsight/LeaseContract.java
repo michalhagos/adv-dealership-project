@@ -50,7 +50,22 @@ public class LeaseContract extends Contract {
 
     }
 
+    // this method calculates the monthly payment for the lease
+// all leases are financed at 4.0% for 36 months
+    @Override
+    public double getMonthlyPayment() {
+        // getting the total price to finance
+        double totalPrice = getTotalPrice();
 
+        // all leases are at 4.0% interest for 36 months
+        double interestRate = 0.04 / 12;
+        int months = 36;
+
+        // calculate monthly payment using standard loan formula
+        // M = P * (r(1+r)^n) / ((1+r)^n - 1)
+        return totalPrice * (interestRate * Math.pow(1 + interestRate, months)) /
+                (Math.pow(1 + interestRate, months) - 1);
+    }
 
 
 
