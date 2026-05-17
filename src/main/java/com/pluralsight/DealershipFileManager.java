@@ -14,6 +14,7 @@ public class DealershipFileManager {
     // reads the inventory CSV file and builds a fully loaded Dealership object
 // returns the dealership with all its vehicles populated from the file
     public Dealership getDealership() {
+
         // the dealership object we will build and return
         Dealership theDealership = null;
 
